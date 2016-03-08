@@ -1,11 +1,11 @@
-#include "StorkApp.h"
+#include "DragonApp.h"
 #include "Moose.h"
 #include "AppFactory.h"
 #include "ModulesApp.h"
 #include "MooseSyntax.h"
 
 template<>
-InputParameters validParams<StorkApp>()
+InputParameters validParams<DragonApp>()
 {
   InputParameters params = validParams<MooseApp>();
 
@@ -16,40 +16,40 @@ InputParameters validParams<StorkApp>()
   return params;
 }
 
-StorkApp::StorkApp(InputParameters parameters) :
+DragonApp::DragonApp(InputParameters parameters) :
     MooseApp(parameters)
 {
   Moose::registerObjects(_factory);
   ModulesApp::registerObjects(_factory);
-  StorkApp::registerObjects(_factory);
+  DragonApp::registerObjects(_factory);
 
   Moose::associateSyntax(_syntax, _action_factory);
   ModulesApp::associateSyntax(_syntax, _action_factory);
-  StorkApp::associateSyntax(_syntax, _action_factory);
+  DragonApp::associateSyntax(_syntax, _action_factory);
 }
 
-StorkApp::~StorkApp()
+DragonApp::~DragonApp()
 {
 }
 
 // External entry point for dynamic application loading
-extern "C" void StorkApp__registerApps() { StorkApp::registerApps(); }
+extern "C" void DragonApp__registerApps() { DragonApp::registerApps(); }
 void
-StorkApp::registerApps()
+DragonApp::registerApps()
 {
-  registerApp(StorkApp);
+  registerApp(DragonApp);
 }
 
 // External entry point for dynamic object registration
-extern "C" void StorkApp__registerObjects(Factory & factory) { StorkApp::registerObjects(factory); }
+extern "C" void DragonApp__registerObjects(Factory & factory) { DragonApp::registerObjects(factory); }
 void
-StorkApp::registerObjects(Factory & factory)
+DragonApp::registerObjects(Factory & factory)
 {
 }
 
 // External entry point for dynamic syntax association
-extern "C" void StorkApp__associateSyntax(Syntax & syntax, ActionFactory & action_factory) { StorkApp::associateSyntax(syntax, action_factory); }
+extern "C" void DragonApp__associateSyntax(Syntax & syntax, ActionFactory & action_factory) { DragonApp::associateSyntax(syntax, action_factory); }
 void
-StorkApp::associateSyntax(Syntax & /*syntax*/, ActionFactory & /*action_factory*/)
+DragonApp::associateSyntax(Syntax & /*syntax*/, ActionFactory & /*action_factory*/)
 {
 }
